@@ -38,7 +38,6 @@ data "template_file" "upgrade-script" {
 }
 
 # Running the update script file in each server.
-# If you make changes to the shell script, you need to update the sed command line number to get rid of te { at the end of the file which gets created by Terraform for some reason.
 resource "null_resource" "upgrade-nodes" {
   depends_on = [null_resource.rebooting]
 
@@ -51,13 +50,12 @@ resource "null_resource" "upgrade-nodes" {
   }
 
   provisioner "file" {
-    content     = "${element(data.template_file.upgrade-script.*.rendered, count.index)}}"
+    content     = element(data.template_file.upgrade-script.*.rendered, count.index)
     destination = "/tmp/update_esxi.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "sed -i '27d' /tmp/update_esxi.sh",
       "echo 'Running update script on remote host.'",
       "chmod +x /tmp/update_esxi.sh",
       "/tmp/update_esxi.sh",

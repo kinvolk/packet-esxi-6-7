@@ -17,7 +17,7 @@ esxcli network firewall ruleset set -e true -r httpClient
 
 echo "Getting update file and updating"
 # The variable esxi_update_filename is in the variables.tf file
-esxcli software profile update -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml -p ${esxi_update_filename}
+esxcli software profile update -d https://hostupdate.vmware.com/software/VUM/PRODUCTION/main/vmw-depot-index.xml -p '${esxi_update_filename}'
 
 esxcli network firewall ruleset set -e false -r httpClient
 
