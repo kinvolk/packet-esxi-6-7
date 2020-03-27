@@ -16,12 +16,6 @@ variable "project_id" {
   type        = string
 }
 
-variable "private_key_filename" {
-  description = "SSH private key associated with public key. This must be a key without a passphrase."
-  default     = "~/.ssh/id_rsa"
-  type        = string
-}
-
 variable "facility" {
   description = "The facility in which the bare metal server will be provisioned."
   default     = "ewr1"

@@ -44,8 +44,8 @@ resource "null_resource" "upgrade-nodes" {
   count = var.amount
 
   connection {
+    type        = "ssh"
     user        = "root"
-    private_key = file(var.private_key_filename)
     host        = element(packet_device.servers.*.access_public_ipv4, count.index)
   }
 
