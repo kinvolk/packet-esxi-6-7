@@ -1,3 +1,8 @@
+variable "hostname_prefix" {
+  description = "Your prefix to hostname, end it with a dash"
+  default = ""
+}
+
 variable "auth_token" {
   description = "Your Packet API token"
   default = "TOKEN"

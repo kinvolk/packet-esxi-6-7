@@ -5,7 +5,7 @@ provider "packet" {
 # Provisioning Packet servers
 resource "packet_device" "servers" {
   count            = "${var.amount}"
-  hostname         = "${format("%s-%s-%d", "${var.facility}", "ESXi-node", count.index)}"
+  hostname         = "${format("%s%s-%s-%d", "${var.hostname_prefix}", "${var.facility}", "ESXi-node", count.index)}"
   plan             = "${var.plan}"
   facilities       = ["${var.facility}"]
   operating_system = "vmware_esxi_6_5"
