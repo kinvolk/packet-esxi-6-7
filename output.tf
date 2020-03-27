@@ -3,5 +3,5 @@ output "Message" {
 }
 
 output "ESXi_Management_Addresses" {
-  value = ["${packet_device.servers.*.access_public_ipv4}"]
+  value = [packet_device.servers.*.access_public_ipv4]
 }
